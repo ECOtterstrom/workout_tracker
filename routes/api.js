@@ -4,8 +4,8 @@ const Workout = require("../models/workout.js");
 //Add exercise
 router.post("/api/workouts", (req, res) => {
     Workout.create({})
-        .then(dbWorkouts => {
-            res.json(dbWorkouts);
+        .then(dbWorkout => {
+            res.json(dbWorkout);
         })
         .catch(err => {
             //res.status(400).json(err);
@@ -14,14 +14,14 @@ router.post("/api/workouts", (req, res) => {
 });
 
 //Create workout
-router.post("/api/workout/:id", ({ body, params }, res) => {
+router.put("/api/workouts/:id", ({ body, params }, res) => {
     Workout.findByIdAndUpdate(
         params.id,
         { $push: { exercises: body } },
         { new: true, runValidators: true }
     )
-        .then(dbWorkouts => {
-            res.json(dbWorkouts);
+        .then(dbWorkout => {
+            res.json(dbWorkout);
         })
         .catch(err => {
             //res.status(400).json(err);
@@ -31,8 +31,9 @@ router.post("/api/workout/:id", ({ body, params }, res) => {
 
 //Get last workout
 router.get("/api/workouts", (req, res) => {
-    Workout.find({})
+    Workout.find()
         .then(dbWorkouts => {
+            console.log(dbWorkouts);
             res.json(dbWorkouts);
         })
         .catch(err => {
@@ -56,14 +57,14 @@ router.get("/api/workouts/range", (req, res) => {
 });
 
 //Delete workouts
-// router.delete("api/workouts/", (req, res) => {
-//     Workout.deleteMany({})
-//     .then(() => {
-//         res.json(true);
-//       })
-//       .catch(err => {
-//         res.json(err);
-//       });
-//     });
+router.delete("api/workouts/", ({ body }, res) => {
+    Workout.findByIdAndDelete(body.id)
+    .then(() => {
+        res.json(true);
+      })
+      .catch(err => {
+        res.json(err);
+      });
+    });
 
 module.exports = router;

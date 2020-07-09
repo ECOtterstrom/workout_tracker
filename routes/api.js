@@ -4,8 +4,8 @@ const Workout = require("../models/workout.js");
 //Add exercise
 router.post("/api/workouts", (req, res) => {
     Workout.create({})
-        .then(dbWorkout => {
-            res.json(dbWorkout);
+        .then(dbWorkouts => {
+            res.json(dbWorkouts);
         })
         .catch(err => {
             //res.status(400).json(err);
@@ -20,8 +20,8 @@ router.put("/api/workouts/:id", ({ body, params }, res) => {
         { $push: { exercises: body } },
         { new: true, runValidators: true }
     )
-        .then(dbWorkout => {
-            res.json(dbWorkout);
+        .then(dbWorkouts => {
+            res.json(dbWorkouts);
         })
         .catch(err => {
             //res.status(400).json(err);

@@ -11,10 +11,10 @@ const path = require("path");
 
 // Each of the below routes just handles the HTML page that the user gets sent to.
 
-// index route loads index.html
-// router.get("/", function (req, res) {
-//     res.sendFile(path.join(__dirname, "../public/index.html"));
-// });
+//index route loads index.html
+router.get("/", function (req, res) {
+    res.sendFile(path.join(__dirname, "../public/index.html"));
+});
 
 // exercise route loads exercise.html
 router.get("/exercise", (req, res) => {

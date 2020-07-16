@@ -17,7 +17,7 @@ This project enables the user to track their workouts and view their progress in
 
 
 ## Usage
-
+Deployed application: https://protected-bastion-00970.herokuapp.com/ 
 
 ## License
 Licensed by Erin Otterstrom, 2020
